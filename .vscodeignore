@@ -1,0 +1,13 @@
+.vscode/**
+src/**
+out/**/*.map
+node_modules/**
+.gitignore
+.eslintrc.json
+tsconfig.json
+**/*.ts
+Temp_*/**
+docs/**
+.claude/**
+CLAUDE.md
+.DS_Store

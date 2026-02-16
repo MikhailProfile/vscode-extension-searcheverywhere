@@ -1,0 +1,160 @@
+{
+  "name": "vscode-sql-searcheverywhere",
+  "displayName": "SQL Search Everywhere",
+  "description": "Search database objects (tables, views, procedures, functions) across your SQL Server databases",
+  "version": "1.0.0",
+  "publisher": "MikhailT",
+  "license": "MIT",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MikhailProfile/vscode-extension-searcheverywhere.git"
+  },
+  "homepage": "https://github.com/MikhailProfile/vscode-extension-searcheverywhere",
+  "bugs": {
+    "url": "https://github.com/MikhailProfile/vscode-extension-searcheverywhere/issues"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Data Science"
+  ],
+  "activationEvents": [
+    "onCommand:sql-searcheverywhere.search",
+    "onCommand:sql-searcheverywhere.searchClearCache"
+  ],
+  "extensionDependencies": [
+    "ms-mssql.mssql"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sql-searcheverywhere.search",
+        "title": "SQL: Search Database Objects",
+        "category": "SQL Search Everywhere"
+      },
+      {
+        "command": "sql-searcheverywhere.searchClearCache",
+        "title": "SQL: Search Database Objects (Clear Cache)",
+        "category": "SQL Search Everywhere"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sql-searcheverywhere.search",
+        "key": "ctrl+shift+;",
+        "mac": "cmd+shift+;",
+        "when": "editorTextFocus && editorLangId == sql"
+      },
+      {
+        "command": "sql-searcheverywhere.searchClearCache",
+        "key": "ctrl+shift+alt+;",
+        "mac": "cmd+shift+alt+;",
+        "when": "editorTextFocus && editorLangId == sql"
+      }
+    ],
+    "configuration": {
+      "title": "SQL Search Everywhere",
+      "properties": {
+        "sqlSearchEverywhere.includeTableColumns": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include column names in table search results. Warning: May impact performance on large databases."
+        },
+        "sqlSearchEverywhere.actions.table": {
+          "type": "string",
+          "enum": [
+            "Select",
+            "Create",
+            "Delete",
+            "Insert Name"
+          ],
+          "default": "Select",
+          "enumDescriptions": [
+            "Generate SELECT TOP N script",
+            "Generate CREATE TABLE script from database metadata",
+            "Generate DELETE template",
+            "Insert table name at cursor"
+          ],
+          "description": "Default action when selecting a table"
+        },
+        "sqlSearchEverywhere.actions.view": {
+          "type": "string",
+          "enum": [
+            "Select",
+            "Create",
+            "Alter",
+            "Insert Name"
+          ],
+          "default": "Select",
+          "enumDescriptions": [
+            "Generate SELECT TOP N script",
+            "Generate CREATE VIEW script from database",
+            "Generate ALTER VIEW script from database",
+            "Insert view name at cursor"
+          ],
+          "description": "Default action when selecting a view"
+        },
+        "sqlSearchEverywhere.actions.storedProcedure": {
+          "type": "string",
+          "enum": [
+            "Create",
+            "Execute",
+            "Alter",
+            "Insert Name"
+          ],
+          "default": "Alter",
+          "enumDescriptions": [
+            "Generate CREATE PROCEDURE script from database",
+            "Generate EXEC script template",
+            "Generate ALTER PROCEDURE script from database",
+            "Insert procedure name at cursor"
+          ],
+          "description": "Default action when selecting a stored procedure"
+        },
+        "sqlSearchEverywhere.actions.function": {
+          "type": "string",
+          "enum": [
+            "Select",
+            "Create",
+            "Alter",
+            "Insert Name"
+          ],
+          "default": "Alter",
+          "enumDescriptions": [
+            "Generate SELECT statement to invoke function",
+            "Generate CREATE FUNCTION script from database",
+            "Generate ALTER FUNCTION script from database",
+            "Insert function name at cursor"
+          ],
+          "description": "Default action when selecting a function"
+        },
+        "sqlSearchEverywhere.scriptRowLimit": {
+          "type": "number",
+          "default": 1000,
+          "minimum": 1,
+          "maximum": 1000000,
+          "description": "Number of rows to include in SELECT scripts (TOP n)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vscode/vsce": "^3.7.1",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0"
+  }
+}

@@ -2,7 +2,7 @@
   "name": "vscode-sql-searcheverywhere",
   "displayName": "SQL Search Everywhere",
   "description": "Search database objects (tables, views, procedures, functions) across your SQL Server databases",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "MikhailT",
   "license": "MIT",
   "icon": "resources/icon.png",

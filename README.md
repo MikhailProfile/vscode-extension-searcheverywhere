@@ -1,5 +1,7 @@
 # SQL Search Everywhere
 
+![SQL Search Everywhere Demo](SqlSearchEverywhere.gif)
+
 A VS Code extension that enables fast, keyboard-driven search for SQL Server database objects (tables, views, stored procedures, functions). Migrated from Azure Data Studio's SearchEverywhere extension.
 
 ## Features
